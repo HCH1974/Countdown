@@ -7,6 +7,12 @@ var resetButton = document.getElementById("reset");
 resetButton.addEventListener("click", () => {
   initialise();
 });
+
+var undo = document.getElementById("undo");
+undo.addEventListener("click", () => {
+  undoLastCalculation();
+});
+
 // number is clicked
 var firstNumber = document.getElementById("first");
 firstNumber.addEventListener("click", () => {
@@ -81,6 +87,13 @@ function handleNumberClick(numberClicked, htmlElement) {
           case "x":
             newNumber = singleActiveNumber.innerHTML * htmlElement.innerHTML;
             hasChanged = true;
+            const multiplyCalculation = {
+              firstNumber: singleActiveNumber.id,
+              firstValue: singleActiveNumber.innerHTML,
+              secondNumber: htmlElement.id,
+              secondValue: htmlElement.innerHTML,
+            };
+            calculationList.push(multiplyCalculation);
             break;
           case "/":
             if (
@@ -89,6 +102,13 @@ function handleNumberClick(numberClicked, htmlElement) {
             ) {
               newNumber = singleActiveNumber.innerHTML / htmlElement.innerHTML;
               hasChanged = true;
+              const divideCalculation = {
+                firstNumber: singleActiveNumber.id,
+                firstValue: singleActiveNumber.innerHTML,
+                secondNumber: htmlElement.id,
+                secondValue: htmlElement.innerHTML,
+              };
+              calculationList.push(divideCalculation);
             }
             break;
           case "-":
@@ -100,6 +120,13 @@ function handleNumberClick(numberClicked, htmlElement) {
                 Number(singleActiveNumber.innerHTML) -
                 Number(htmlElement.innerHTML);
               hasChanged = true;
+              const subtractCalculation = {
+                firstNumber: singleActiveNumber.id,
+                firstValue: singleActiveNumber.innerHTML,
+                secondNumber: htmlElement.id,
+                secondValue: htmlElement.innerHTML,
+              };
+              calculationList.push(subtractCalculation);
             }
             break;
           case "+":
@@ -107,14 +134,14 @@ function handleNumberClick(numberClicked, htmlElement) {
               Number(singleActiveNumber.innerHTML) +
               Number(htmlElement.innerHTML);
             hasChanged = true;
-            const thisCalculation = {
+            const addCalculation = {
               firstNumber: singleActiveNumber.id,
               firstValue: singleActiveNumber.innerHTML,
               secondNumber: htmlElement.id,
               secondValue: htmlElement.innerHTML,
-              newValue: newNumber,
-              operator: "+",
             };
+            calculationList.push(addCalculation);
+            console.log(calculationList);
             break;
         }
         if (hasChanged) {
@@ -217,4 +244,22 @@ function initialise() {
   allHidden.forEach((element) => {
     element.classList.remove("hidden");
   });
+}
+
+function undoLastCalculation() {
+  var lastCalculation = calculationList[calculationList.length - 1];
+  var firstCalculationNumber = document.getElementById(
+    lastCalculation.firstNumber
+  );
+  firstCalculationNumber.innerHTML = lastCalculation.firstValue;
+  firstCalculationNumber.classList.remove("hidden");
+  var secondCalculationNumber = document.getElementById(
+    lastCalculation.secondNumber
+  );
+  secondCalculationNumber.innerHTML = lastCalculation.secondValue;
+  calculationList.splice(calculationList.length - 1, 1);
+  if (calculationList.length == 0) {
+    undo = document.getElementById("undo");
+    undo.disabled = true;
+  }
 }
