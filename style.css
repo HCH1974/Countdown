@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f6f7fb;
+  font-family: "Muli", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.target-container {
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.numbers-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.operators-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+.circle {
+  background-color: #fff;
+  color: black;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid blue;
+  transition: 0.4s ease;
+}
+
+#target {
+  height: 100px;
+  width: 100px;
+  border: 3px solid red;
+  color: purple;
+  font-size: xx-large;
+}
+
+.operators-container > .circle {
+  height: 80px;
+  width: 80px;
+  border: 3px solid green;
+  color: purple;
+  font-size: x-large;
+}
+
+.circle.active {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+}
+
+.circle.winner {
+  background-color: red;
+  color: black;
+  font-weight: bold;
+}
+
+.circle.hidden {
+  background-color: white;
+  color: white;
+  cursor: not-allowed;
+}
+
+.btn {
+  background-color: blue;
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}

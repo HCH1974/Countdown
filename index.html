@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Countdown Numbers Game</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="target-container">
+        <div class="circle" id="target">100</div>
+      </div>
+      <div class="numbers-container">
+        <div class="circle number" id="first">{one}</div>
+        <div class="circle number" id="second">2</div>
+        <div class="circle number" id="third">3</div>
+        <div class="circle number" id="fourth">4</div>
+        <div class="circle number" id="fifth">5</div>
+        <div class="circle number" id="sixth">6</div>
+      </div>
+      <div class="operators-container">
+        <div class="circle operator" id="multiply">x</div>
+        <div class="circle operator" id="divide">/</div>
+        <div class="circle operator" id="subtract">-</div>
+        <div class="circle operator" id="add">+</div>
+      </div>
+      <button class="btn" id="undo" disabled>Undo</button>
+      <button class="btn" id="reset">Reset</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
