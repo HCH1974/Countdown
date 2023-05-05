@@ -5,12 +5,19 @@ var calculationList = new Array();
 // reset button
 var resetButton = document.getElementById("reset");
 resetButton.addEventListener("click", () => {
-  initialise();
+  resetGame();
 });
 
+// undo button
 var undo = document.getElementById("undo");
 undo.addEventListener("click", () => {
   undoLastCalculation();
+});
+
+// new game button
+var newGame = document.getElementById("newgame");
+newGame.addEventListener("click", () => {
+  initialise();
 });
 
 // number is clicked
@@ -141,7 +148,6 @@ function handleNumberClick(numberClicked, htmlElement) {
               secondValue: htmlElement.innerHTML,
             };
             calculationList.push(addCalculation);
-            console.log(calculationList);
             break;
         }
         if (hasChanged) {
@@ -244,6 +250,10 @@ function initialise() {
   allHidden.forEach((element) => {
     element.classList.remove("hidden");
   });
+  const allWinners = document.querySelectorAll(".winner");
+  allWinners.forEach((element) => {
+    element.classList.remove("winner");
+  });
 }
 
 function undoLastCalculation() {
@@ -261,5 +271,12 @@ function undoLastCalculation() {
   if (calculationList.length == 0) {
     undo = document.getElementById("undo");
     undo.disabled = true;
+  }
+}
+
+function resetGame() {
+  const numberOfMoves = calculationList.length;
+  for (let i = 0; i < numberOfMoves; i++) {
+    undoLastCalculation();
   }
 }
